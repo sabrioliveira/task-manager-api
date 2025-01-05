@@ -1,12 +1,14 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import {apiKey,
-    authDomain,
-    projectId,
-    storageBucket,
-    messagingSenderId,
-    appId } from '../config/dotenv-config.js'
+import {
+  apiKey,
+  authDomain,
+  projectId,
+  storageBucket,
+  messagingSenderId,
+  appId,
+} from "../config/dotenvConfig.js";
 
 const firebaseConfig = {
   apiKey,
@@ -14,7 +16,7 @@ const firebaseConfig = {
   projectId,
   storageBucket,
   messagingSenderId,
-  appId
+  appId,
 };
 
 const app = initializeApp(firebaseConfig);
