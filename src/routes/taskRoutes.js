@@ -6,11 +6,11 @@ import {
   deleteTask,
 } from "../controllers/taskController.js";
 
-const router = express.Router();
+const taskRoutes = express.Router();
 
-router.get("/", getAllTasks);
-router.post("/", createTask);
-router.put("/:id", updateTask);
-router.delete("/:id", deleteTask);
+taskRoutes.get("/", getAllTasks);
+taskRoutes.post("/", createTask);
+taskRoutes.put("/:id", updateTask);
+taskRoutes.delete("/:id", deleteTask);
 
-export default router;
+export default taskRoutes;
