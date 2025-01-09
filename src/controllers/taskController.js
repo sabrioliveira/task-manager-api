@@ -38,3 +38,12 @@ export const deleteTask = async (req, res) => {
     return res.status(400).json({ message: "Error deleting task" });
   }
 };
+
+export const getUserTasks = async (req, res) => {
+  try {
+    const tasks = await task.getUserTasks(req.params.id);
+    return res.status(200).json(tasks);
+  } catch {
+    return res.status(400).json({ message: "Error fetching user tasks" });
+  }
+};

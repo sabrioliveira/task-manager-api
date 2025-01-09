@@ -6,6 +6,8 @@ import {
   doc,
   updateDoc,
   deleteDoc,
+  query,
+  where,
 } from "firebase/firestore";
 
 export const createTask = async (body) => {
@@ -47,6 +49,27 @@ export const deleteTask = async (id) => {
     console.log("Tarefa deletada");
   } catch (error) {
     console.error("Erro ao tentar 'deleteTask': ", error);
+    throw error;
+  }
+};
+
+export const getUserTasks = async (userId) => {
+  try {
+    const tasksQuery = query(
+      collection(db, "tasks"),
+      where("userID", "==", `/users/${userId}`)
+    );
+    const querySnapshot = await getDocs(tasksQuery);
+
+    const tasks = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    console.log(tasksQuery);
+
+    return tasks;
+  } catch (error) {
+    console.error("Erro ao buscar tasks do usuário: ", error);
     throw error;
   }
 };
