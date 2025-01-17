@@ -61,10 +61,16 @@ export const getUserTasks = async (userId) => {
     );
     const querySnapshot = await getDocs(tasksQuery);
 
-    const tasks = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
+    const tasks = querySnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        title: data.title,
+        description: data.description,
+        status: data.status,
+        userID: data.userID, // Opcional: apenas o ID do usuário, se necessário
+      };
+    });
     console.log(tasksQuery);
 
     return tasks;
